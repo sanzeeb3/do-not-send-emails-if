@@ -23,7 +23,7 @@ define( 'DO_NOT_SEND_EMAILS_IF_PLUGIN_PATH', __DIR__ );
 /**
  * Plugin version.
  */
-const DO_NOT_SEND_EMAILS_IF_VERSION = '1.4.0';
+const DO_NOT_SEND_EMAILS_IF_VERSION = '1.0.0';
 
 require_once __DIR__ . '/vendor/autoload.php';
 
