@@ -5,7 +5,7 @@ Welcome to the Do Not Send Emails If plugin repository. I hope you are disabling
 
 ## Documentation
 
-https://sanjeebaryal.com.np/
+https://sanjeebaryal.com.np/disable-any-emails-sent-from-your-wordpress-site/
 
 
 ## Contributing Guidelines

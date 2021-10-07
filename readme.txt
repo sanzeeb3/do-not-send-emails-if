@@ -32,7 +32,7 @@ Note that the plugin do not disable the emails that are not sent using <code>wp_
 
 Every email is now within your control because why not?
 
-Follow the [documentation](https://sanjeebaryal.com.np/) for more information.
+Follow the [documentation](https://sanjeebaryal.com.np/disable-any-emails-sent-from-your-wordpress-site/) for more information.
 
 Contributions of any kind are welcome. Visit the [GitHub Repository](https://github.com/sanzeeb3/do-not-send-emails-if).
 
