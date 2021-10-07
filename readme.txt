@@ -24,7 +24,7 @@ Do not send emails if conditions matches. You set the condition.
 
 and many more conditions...
 
-Compatible with WordPress core emails such as New User Registration email, Plugin Update Notification emails etc, WooCommerce emails such as New Order Email, Password Change Email etc.
+Compatible with WordPress core emails such as New User Registration email, Plugin/Theme Automatic Updates Notification emails etc, WooCommerce emails such as New Order Email, Password Change Email etc.
 
 and with every WordPress plugins sending emails with <code>wp_mail()</code>.
 

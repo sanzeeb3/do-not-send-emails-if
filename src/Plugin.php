@@ -44,6 +44,16 @@ final class Plugin {
 	 * @since 1.0.0
 	 */
 	public function init() {
+
+		$classes = array( 'Settings' );
+
+		foreach ( $classes as $class ) {
+			if ( \class_exists( __NAMESPACE__ . '\\' . $class ) ) {
+				$class = __NAMESPACE__ . '\\' . $class;
+				$obj   = new $class();
+				$obj->init();
+			}
+		}
 	}
 
 	/**
