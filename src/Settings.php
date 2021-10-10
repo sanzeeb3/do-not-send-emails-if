@@ -59,7 +59,7 @@ class Settings {
 			'settings_nonce' => wp_create_nonce( 'dnsei_settings' ),
 		);
 
-		wp_enqueue_style( 'dnsei-admin-style', plugins_url( 'assets/admin-style.css', DO_NOT_SEND_EMAILS_IF_PLUGIN_FILE ), array(), DO_NOT_SEND_EMAILS_IF_VERSION, $media = 'all' );
+		wp_enqueue_style( 'dnsei-admin-style', plugins_url( 'assets/admin-styles.css', DO_NOT_SEND_EMAILS_IF_PLUGIN_FILE ), array(), DO_NOT_SEND_EMAILS_IF_VERSION, $media = 'all' );
 
 		wp_enqueue_script( 'dnsei-settings-script', plugins_url( 'assets/admin-settings.min.js', DO_NOT_SEND_EMAILS_IF_PLUGIN_FILE ), array( 'wp-element', 'wp-i18n' ), DO_NOT_SEND_EMAILS_IF_VERSION, false ); 
 		
