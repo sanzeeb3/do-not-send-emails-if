@@ -1,6 +1,6 @@
 module.exports = {
 	entry: {
-		settings: { import: './assets/admin-settings.js', filename:  'assets/admin-settings.min.js' }
+		settings: { import: ['./assets/admin-settings.js', './assets/group.js' ], filename:  'assets/admin-settings.min.js' }
 	},
 	output: {
 		path: __dirname,
