@@ -1,0 +1,8 @@
+.do-not-send-emails-if-conditional-settings {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.do-not-send-emails-if-matches, .do-not-send-emails-if-result {
+	padding-left: 15px;
+}
