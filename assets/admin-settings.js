@@ -29,12 +29,10 @@ export default function Settings() {
 
                     <div className="do-not-send-emails-if-matches">
                         <select name="do-not-send-emails-if-matches">
-                            <option> { __( 'is', 'do-not-send-emails-if' ) }</option>
-                            <option>{ __( 'is not', 'do-not-send-emails-if' ) }</option>
-                            <option>{ __( 'empty', 'do-not-send-emails-if' ) } </option>
-                            <option>{ __( 'not empty', 'do-not-send-emails-if' ) } </option>
-                            <option>{ __( 'contains', 'do-not-send-emails-if' ) } </option>
-                            <option>{ __( 'does not contain', 'do-not-send-emails-if' ) } </option>
+                            <option> { __( 'is', 'do-not-send-emails-if' ) } </option>
+                            <option> { __( 'is not', 'do-not-send-emails-if' ) } </option>
+                            <option> { __( 'contains', 'do-not-send-emails-if' ) } </option>
+                            <option> { __( 'does not contain', 'do-not-send-emails-if' ) } </option>
                         </select>
                     </div>
                     

@@ -78,5 +78,11 @@ class Settings {
 	 */
 	public function save_settings() {
 
+		if ( empty( $_POST['do_not_send_emails_if_settings_nonce'] ) ) {
+			return;
+		}
+
+		check_admin_referer( 'dnsei_settings', 'do_not_send_emails_if_settings_nonce' );
+
 	}
 }
