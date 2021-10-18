@@ -15,41 +15,45 @@ export default function Settings() {
         <div id="do-not-send-emails-if-settings">
             <h2> { __( 'Do Not Send Emails If', 'do-not-send-emails-if' ) } </h2>
             
-            <div className="do-not-send-emails-if-conditional-settings">
-                <div className="do-not-send-emails-if-condition">
-                    <select name="">
-                        <option>To Email</option>
-                        <option>From Email</option>
-                        <option>Email Subject</option>
-                        <option>Email Content</option>
-                    </select>
-                </div>
-                
-                <div className="do-not-send-emails-if-matches">
-                    <select name="">
-                        <option>is</option>
-                        <option>is not</option>
-                        <option>emtpy</option>
-                        <option>not emtpy</option>
-                        <option>contains</option>
-                        <option>does not contain</option>
-                    </select>
-                </div>
-                
-                <div className="do-not-send-emails-if-result">
-                    <input type="text"/>
+            <form id="do-not-send-emails-if-settings" method="post">
+
+                <div className="do-not-send-emails-if-conditional-settings">
+                    <div className="do-not-send-emails-if-condition">
+                        <select name="do-not-send-emails-if-condition">
+                            <option> { __( 'To Email', 'do-not-send-emails-if' ) } </option>
+                            <option> { __( 'From Email', 'do-not-send-emails-if' ) } </option>
+                            <option> { __( 'Email Subject', 'do-not-send-emails-if' ) } </option>
+                            <option> { __( 'Email Message', 'do-not-send-emails-if' ) } </option>
+                        </select>
+                    </div>
+
+                    <div className="do-not-send-emails-if-matches">
+                        <select name="do-not-send-emails-if-matches">
+                            <option> { __( 'is', 'do-not-send-emails-if' ) }</option>
+                            <option>{ __( 'is not', 'do-not-send-emails-if' ) }</option>
+                            <option>{ __( 'empty', 'do-not-send-emails-if' ) } </option>
+                            <option>{ __( 'not empty', 'do-not-send-emails-if' ) } </option>
+                            <option>{ __( 'contains', 'do-not-send-emails-if' ) } </option>
+                            <option>{ __( 'does not contain', 'do-not-send-emails-if' ) } </option>
+                        </select>
+                    </div>
+                    
+                    <div className="do-not-send-emails-if-result">
+                        <input type="text" name="do-not-send-emails-if-result"/>
+                    </div>
+
                 </div>
 
-            </div>
+                <input type="hidden" id="dnsei-settings-save-nonce" name="do_not_send_emails_if_settings_nonce" value={dnsei_plugins_params.settings_nonce} />
 
-            <p className="submit">
-                <button type="submit" className="button-primary">Save</button>
-            </p>
+                <p className="submit">
+                    <button type="submit" className="button-primary">Save</button>
+                </p>
 
+            </form>
         </div>
     )
 }
-
 
 document.addEventListener( "DOMContentLoaded", function(event) {
 
