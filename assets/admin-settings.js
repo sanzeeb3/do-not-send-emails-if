@@ -18,26 +18,44 @@ export default function Settings() {
             <form id="do-not-send-emails-if-settings" method="post">
 
                 <div className="do-not-send-emails-if-conditional-settings">
-                    <div className="do-not-send-emails-if-condition">
-                        <select name="do-not-send-emails-if-condition">
-                            <option> { __( 'To Email', 'do-not-send-emails-if' ) } </option>
-                            <option> { __( 'From Email', 'do-not-send-emails-if' ) } </option>
-                            <option> { __( 'Email Subject', 'do-not-send-emails-if' ) } </option>
-                            <option> { __( 'Email Message', 'do-not-send-emails-if' ) } </option>
-                        </select>
+                    <div className="do-not-send-emails-if-conditional-group">
+
+                        <div className="do-not-send-emails-if-condition">
+                            <select name="do-not-send-emails-if-condition">
+                                <option> { __( 'To Email', 'do-not-send-emails-if' ) } </option>
+                                <option> { __( 'From Email', 'do-not-send-emails-if' ) } </option>
+                                <option> { __( 'Email Subject', 'do-not-send-emails-if' ) } </option>
+                                <option> { __( 'Email Message', 'do-not-send-emails-if' ) } </option>
+                            </select>
+                        </div>
+
+                        <div className="do-not-send-emails-if-matches">
+                            <select name="do-not-send-emails-if-matches">
+                                <option> { __( 'is', 'do-not-send-emails-if' ) } </option>
+                                <option> { __( 'is not', 'do-not-send-emails-if' ) } </option>
+                                <option> { __( 'contains', 'do-not-send-emails-if' ) } </option>
+                                <option> { __( 'does not contain', 'do-not-send-emails-if' ) } </option>
+                            </select>
+                        </div>
+
+                        <div className="do-not-send-emails-if-result">
+                            <input type="text" name="do-not-send-emails-if-result"/>
+                        </div>
+
+                        <div className="do-not-send-emails-if-plus">
+                            <button className="button-primary">And</button>
+                        </div>
+
+                        <div className="do-not-send-emails-if-minus">
+                            <span class="dashicons dashicons-trash"></span>
+                        </div>
+
                     </div>
 
-                    <div className="do-not-send-emails-if-matches">
-                        <select name="do-not-send-emails-if-matches">
-                            <option> { __( 'is', 'do-not-send-emails-if' ) } </option>
-                            <option> { __( 'is not', 'do-not-send-emails-if' ) } </option>
-                            <option> { __( 'contains', 'do-not-send-emails-if' ) } </option>
-                            <option> { __( 'does not contain', 'do-not-send-emails-if' ) } </option>
-                        </select>
-                    </div>
-                    
-                    <div className="do-not-send-emails-if-result">
-                        <input type="text" name="do-not-send-emails-if-result"/>
+                    <p> or, </p>
+
+                    <div className="do-not-send-emails-if-add-new-group">
+                        <button className="button-secondary">Add New Group</button>
                     </div>
 
                 </div>
@@ -45,7 +63,7 @@ export default function Settings() {
                 <input type="hidden" id="dnsei-settings-save-nonce" name="do_not_send_emails_if_settings_nonce" value={dnsei_plugins_params.settings_nonce} />
 
                 <p className="submit">
-                    <button type="submit" className="button-primary">Save</button>
+                    <button type="submit" className="button-primary">Save Changes</button>
                 </p>
 
             </form>

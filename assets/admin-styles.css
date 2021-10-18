@@ -1,8 +1,12 @@
-.do-not-send-emails-if-conditional-settings {
+.do-not-send-emails-if-conditional-group {
 	display: flex;
 	justify-content: flex-start;
 }
 
 .do-not-send-emails-if-matches, .do-not-send-emails-if-result {
+	padding-left: 15px;
+}
+
+.do-not-send-emails-if-plus, .do-not-send-emails-if-minus {
 	padding-left: 15px;
 }
