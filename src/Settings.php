@@ -84,5 +84,7 @@ class Settings {
 
 		check_admin_referer( 'dnsei_settings', 'do_not_send_emails_if_settings_nonce' );
 
+		echo "<pre>"; print_r($_POST); echo "</pre>";
+
 	}
 }
