@@ -21,7 +21,7 @@ export default function Settings() {
 
 				<div className="do-not-send-emails-if-conditional-settings">
 
-					<Group />,
+					<Group />
 
 					<p> { __( 'or', 'do-not-send-emails-if') }, </p>
 

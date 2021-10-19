@@ -9,9 +9,10 @@ export default function Group() {
 		setAddNewRowCount( addNewRowCount + 1 );
 	}
 
+
 	const [addNewRowCount, setAddNewRowCount] = useState( 1 );
 
-	return (
+	var element = (
 		<div className="do-not-send-emails-if-conditional-group">
 
 			<div className="do-not-send-emails-if-condition">
@@ -44,6 +45,16 @@ export default function Group() {
 				<span class="dashicons dashicons-trash"></span>
 			</div>
 
+		</div>
+	);
+
+	for ( let i=0; i<addNewRowCount; i++ ) {
+		var	group = [ ...group, element ];
+	}
+
+	return (
+		<div className="do-not-send-emails-if-conditional-groups">
+			{group}
 		</div>
 	)
 }
