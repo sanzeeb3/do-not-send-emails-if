@@ -16,9 +16,16 @@ export default function Group() {
 		}
 	}
 
-	const [addNewRowCount, setAddNewRowCount] = useState( 1 );
+	const addNewGroup  = (e) => {
+		e.preventDefault();
 
-	var element = (
+		setAddNewOrCount( addNewOrCount + 1 );
+	}
+
+	const [addNewRowCount, setAddNewRowCount] = useState( 1 );
+	const [addNewOrCount, setAddNewOrCount] = useState( 1 );
+
+	var andBlock = (
 		<div className="do-not-send-emails-if-conditional-group">
 
 			<div className="do-not-send-emails-if-condition">
@@ -54,13 +61,35 @@ export default function Group() {
 		</div>
 	);
 
+	var orBlock = (
+		<div className="do-not-send-emails-if-or-group">
+			<div className="do-not-send-emails-if-conditional-groups">
+				{andBlock}
+			</div>
+
+			<p> { __( 'or', 'do-not-send-emails-if') }, </p>
+		</div>
+	);
+
 	for ( let i=0; i<addNewRowCount; i++ ) {
-		var	group = [ ...group, element ];
+		var	andBlockGroup = [ ...andBlockGroup, andBlock ];
 	}
 
+	for ( let i=0; i<addNewOrCount; i++ ) {
+		var	orBlockGroup = [ ...orBlockGroup, orBlock ];
+	}
+
+	var altogether = [andBlockGroup, orBlockGroup];
+
 	return (
-		<div className="do-not-send-emails-if-conditional-groups">
-			{group}
+		<div className="do-not-send-emails-if-conditional-settings">
+
+			{altogether}
+
+			<div className="do-not-send-emails-if-add-new-group">
+				<button onClick={addNewGroup} className="button-secondary">{__('Add New Group', 'do-not-send-emails-if')}</button>
+			</div>
+
 		</div>
 	)
 }

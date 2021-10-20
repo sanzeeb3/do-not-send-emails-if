@@ -19,17 +19,7 @@ export default function Settings() {
 
 			<form id="do-not-send-emails-if-settings" method="post">
 
-				<div className="do-not-send-emails-if-conditional-settings">
-
-					<Group />
-
-					<p> { __( 'or', 'do-not-send-emails-if') }, </p>
-
-					<div className="do-not-send-emails-if-add-new-group">
-						<button className="button-secondary">{__('Add New Group', 'do-not-send-emails-if')}</button>
-					</div>
-
-				</div>
+				<Group/>
 
 				<input type="hidden" id="dnsei-settings-save-nonce" name="do_not_send_emails_if_settings_nonce" value={dnsei_plugins_params.settings_nonce} />
 

@@ -11,3 +11,7 @@
 .do-not-send-emails-if-plus, .do-not-send-emails-if-minus {
 	padding-left: 15px;
 }
+
+.do-not-send-emails-if-minus span {
+	cursor: pointer;
+}
