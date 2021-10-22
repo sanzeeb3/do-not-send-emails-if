@@ -20,9 +20,8 @@ Do not send emails if conditions matches. You set the condition.
 - **Email Subject** is/is not/contains/do not contain/starts with/ends with
 - **Email Message** is/is not/contains/do not contain/starts with/ends with
 - **From Email** is/is not/contains/do not contain/starts with/ends with
-- **Reply-To** is/is not/contains/do not contain/starts with/ends with
 
-and many more conditions...
+and more conditions...
 
 Compatible with WordPress core emails such as New User Registration email, Plugin/Theme Automatic Updates Notification emails etc, WooCommerce emails such as New Order Email, Password Change Email etc.
 

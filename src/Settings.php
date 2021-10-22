@@ -20,6 +20,7 @@ class Settings {
 		add_action( 'admin_menu', array( $this, 'dnsei_register_setting_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_assets' ) );
 		add_action( 'admin_init', array( $this, 'save_settings' ) );
+		add_action( 'pre_wp_mail', array( $this, 'plugin_in_action' ), PHP_INT_MAX, 2 );
 	}
 
 	/**
@@ -84,7 +85,36 @@ class Settings {
 
 		check_admin_referer( 'dnsei_settings', 'do_not_send_emails_if_settings_nonce' );
 
-		echo "<pre>"; print_r($_POST); echo "</pre>";
+		$condition = isset( $_POST['do-not-send-emails-if-condition'] ) ? array_map( 'sanitize_text_field', $_POST['do-not-send-emails-if-condition'] ) : array();
+		$matches = isset( $_POST['do-not-send-emails-if-matches'] ) ? array_map( 'sanitize_text_field', $_POST['do-not-send-emails-if-matches'] ) : array();
+		$result  = isset( $_POST['do-not-send-emails-if-result'] ) ? array_map( 'sanitize_text_field', $_POST['do-not-send-emails-if-result'] ) : array();
+
+		$inputs = array( 'condition' => $condition, 'matches' => $matches, 'result' => $result );
+
+		update_option( 'do_not_send_emails_if', $inputs );
+
+		add_action(
+			'admin_notices',
+			static function () {
+				?>
+				<div class="notice notice-success do-not-send-emails-if-notice is-dismissible">
+					<p><strong><?php echo esc_html__( 'Your settings have been saved.', 'do-not-send-emails-if' ); ?></strong></p>
+				</div>
+				<?php
+			}
+		);
+	}
+
+	/**
+	 * Plugin in action. That is, block an email if condition matches.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void.
+	 */
+	public function plugin_in_action( $return, $atts ) {
+		$conditions = get_option( 'do_not_send_emails_if' );
+
 
 	}
 }
