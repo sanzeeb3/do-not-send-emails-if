@@ -20,7 +20,7 @@ export default function Group() {
 
 	function andBlock( dataId ) {
 		return (
-			<div className="do-not-send-emails-if-conditional-group">
+			<div key={dataId} className="do-not-send-emails-if-conditional-group">
 
 				<div className="do-not-send-emails-if-condition">
 					<select name="do-not-send-emails-if-condition[]">
@@ -45,11 +45,11 @@ export default function Group() {
 				</div>
 
 				<div className="do-not-send-emails-if-plus">
-					<span data-id={dataId} onClick={createNewRow} class="dashicons dashicons-plus-alt"></span>
+					<button data-id={dataId} onClick={createNewRow} className="button-secondary">{ __( 'Add', 'do-not-send-emails-if' ) }</button>
 				</div>
 
 				<div className="do-not-send-emails-if-minus">
-					<span data-id={dataId} onClick={deleteRow} class="dashicons dashicons-trash"></span>
+					<button data-id={dataId} onClick={deleteRow} className="button-secondary">{ __( 'Remove', 'do-not-send-emails-if' ) }</button>
 				</div>
 
 			</div>

@@ -12,6 +12,6 @@
 	padding-left: 15px;
 }
 
-.do-not-send-emails-if-minus span {
-	cursor: pointer;
+.do-not-send-emails-if-minus button {
+	border-color: red !important;
 }
