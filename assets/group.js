@@ -5,19 +5,13 @@ export default function Group() {
 
 	const createNewRow = (e) => {
 		e.preventDefault();
-
- 		var dataId = parseInt( e.target.getAttribute('data-id') );
-
 		setRows( rows + 1 );
 	}
 
 	const deleteRow = (e) => {
 		e.preventDefault();
 
-		var dataId = parseInt( e.target.getAttribute('data-id') );
-
 		if ( rows > 1 ) {
-
 			setRows( rows - 1 );
 		}
 	}
@@ -51,7 +45,7 @@ export default function Group() {
 				</div>
 
 				<div className="do-not-send-emails-if-plus">
-					<button data-id={dataId} onClick={createNewRow} className="button-primary">{ __( '+', 'do-not-send-emails-if' ) }</button>
+					<span data-id={dataId} onClick={createNewRow} class="dashicons dashicons-plus-alt"></span>
 				</div>
 
 				<div className="do-not-send-emails-if-minus">
