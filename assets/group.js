@@ -3,27 +3,28 @@ import { useState } from '@wordpress/element';
 
 export default function Group() {
 
-	const addNewRow = (e) => {
+	const createNewRow = (e) => {
 		e.preventDefault();
 
  		var dataId = parseInt( e.target.getAttribute('data-id') );
 
- 		dataId = dataId + 1;
-
- 		// addNewRowCount = [ ...addNewRowCount, dataId ];
-
- 		setAddNewRowCount( [ ...addNewRowCount, dataId ] );
+		setRows( rows + 1 );
 	}
 
 	const deleteRow = (e) => {
 		e.preventDefault();
 
-		var dataId = e.target.getAttribute('data-id');
+		var dataId = parseInt( e.target.getAttribute('data-id') );
+
+		if ( rows > 1 ) {
+
+			setRows( rows - 1 );
+		}
 	}
 
-	const [addNewRowCount, setAddNewRowCount] = useState( [] );
+	const [ rows, setRows ] = useState( 1 );
 
-	function andBlock( dataId = 0 ) {
+	function andBlock( dataId ) {
 		return (
 			<div className="do-not-send-emails-if-conditional-group">
 
@@ -50,7 +51,7 @@ export default function Group() {
 				</div>
 
 				<div className="do-not-send-emails-if-plus">
-					<button data-id={dataId} onClick={addNewRow} className="button-primary">{ __( 'AND', 'do-not-send-emails-if' ) }</button>
+					<button data-id={dataId} onClick={createNewRow} className="button-primary">{ __( '+', 'do-not-send-emails-if' ) }</button>
 				</div>
 
 				<div className="do-not-send-emails-if-minus">
@@ -61,38 +62,13 @@ export default function Group() {
 		);
 	}
 
-	// var orBlock = (
-	// 	<div className="do-not-send-emails-if-or-group">
-	// 		<div className="do-not-send-emails-if-conditional-groups">
-	// 			{andBlock()}
-	// 		</div>
-
-	// 		<p> { __( 'or', 'do-not-send-emails-if') }, </p>
-	// 	</div>
-	// );
-	//
-	console.log( addNewRowCount );
-
-	addNewRowCount.sort();
-
-	// addNewRowCount.forEach( element => {
-	// 	var andBlockGroup = [ ...andBlockGroup, andBlock( element ) ]
-	// });
-
-	for ( const val of addNewRowCount ) {
-		var andBlockGroup = [ ...andBlockGroup, andBlock( val ) ]
+	for ( let i=0; i<rows; i++ ) {
+		var block = [ ...block, andBlock( i ) ]
 	}
-
 
 	return (
 		<div className="do-not-send-emails-if-conditional-settings">
-
-			{ andBlockGroup ? andBlockGroup : andBlock(0) }
-
-			<div className="do-not-send-emails-if-add-new-group">
-				<button className="button-secondary">{__('Add New Group', 'do-not-send-emails-if')}</button>
-			</div>
-
+			{block}
 		</div>
 	)
 }
