@@ -21,7 +21,7 @@ export default function Settings() {
 
 				<Group/>
 
-				<input type="hidden" id="dnsei-settings-save-nonce" name="do_not_send_emails_if_settings_nonce" value={dnsei_plugins_params.settings_nonce} />
+				<input type="hidden" id="dnsei-settings-save-nonce" name="do_not_send_emails_if_settings_nonce" value={dnsei_plugin_params.settings_nonce} />
 
 				<p className="submit">
 					<button type="submit" className="button-primary">Save Changes</button>

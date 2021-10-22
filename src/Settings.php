@@ -34,7 +34,7 @@ class Settings {
 
 	/**
 	 * Do Not Send Emails If settings page.
-	 * 
+	 *
 	 * @since 1.0.0
 	 */
 	public function dnsei_settings_page() {
@@ -59,22 +59,23 @@ class Settings {
 		$params = array(
 			'ajax_url'       => admin_url( 'admin-ajax.php' ),
 			'settings_nonce' => wp_create_nonce( 'dnsei_settings' ),
+			'settings'       => get_option( 'do_not_send_emails_if ' ),
 		);
 
 		wp_enqueue_style( 'dnsei-admin-style', plugins_url( 'assets/admin-styles.css', DO_NOT_SEND_EMAILS_IF_PLUGIN_FILE ), array(), DO_NOT_SEND_EMAILS_IF_VERSION, $media = 'all' );
 
-		wp_enqueue_script( 'dnsei-settings-script', plugins_url( 'assets/admin-settings.min.js', DO_NOT_SEND_EMAILS_IF_PLUGIN_FILE ), array( 'wp-element', 'wp-i18n' ), DO_NOT_SEND_EMAILS_IF_VERSION, false ); 
-		
+		wp_enqueue_script( 'dnsei-settings-script', plugins_url( 'assets/admin-settings.min.js', DO_NOT_SEND_EMAILS_IF_PLUGIN_FILE ), array( 'wp-element', 'wp-i18n' ), DO_NOT_SEND_EMAILS_IF_VERSION, false );
+
 		wp_localize_script(
 			'dnsei-settings-script',
-			'dnsei_plugins_params',
+			'dnsei_plugin_params',
 			$params
 		);
 	}
 
 	/**
 	 * Save settings.
-	 * 
+	 *
 	 * @since 1.0.0
 	 */
 	public function save_settings() {
@@ -86,10 +87,14 @@ class Settings {
 		check_admin_referer( 'dnsei_settings', 'do_not_send_emails_if_settings_nonce' );
 
 		$condition = isset( $_POST['do-not-send-emails-if-condition'] ) ? array_map( 'sanitize_text_field', $_POST['do-not-send-emails-if-condition'] ) : array();
-		$matches = isset( $_POST['do-not-send-emails-if-matches'] ) ? array_map( 'sanitize_text_field', $_POST['do-not-send-emails-if-matches'] ) : array();
-		$result  = isset( $_POST['do-not-send-emails-if-result'] ) ? array_map( 'sanitize_text_field', $_POST['do-not-send-emails-if-result'] ) : array();
+		$matches   = isset( $_POST['do-not-send-emails-if-matches'] ) ? array_map( 'sanitize_text_field', $_POST['do-not-send-emails-if-matches'] ) : array();
+		$result    = isset( $_POST['do-not-send-emails-if-result'] ) ? array_map( 'sanitize_text_field', $_POST['do-not-send-emails-if-result'] ) : array();
 
-		$inputs = array( 'condition' => $condition, 'matches' => $matches, 'result' => $result );
+		$inputs = array(
+			'condition' => $condition,
+			'matches'   => $matches,
+			'result'    => $result,
+		);
 
 		update_option( 'do_not_send_emails_if', $inputs );
 
@@ -114,7 +119,6 @@ class Settings {
 	 */
 	public function plugin_in_action( $return, $atts ) {
 		$conditions = get_option( 'do_not_send_emails_if' );
-
 
 	}
 }
