@@ -3,6 +3,10 @@ import { useState } from '@wordpress/element';
 
 export default function Group() {
 
+	var condition = dnsei_plugin_params.settings.condition ? dnsei_plugin_params.settings.condition : [];
+	var matches   = dnsei_plugin_params.settings.matches ? dnsei_plugin_params.settings.matches : [];
+	var result    = dnsei_plugin_params.settings.result ? dnsei_plugin_params.settings.result : [];
+
 	const createNewRow = (e) => {
 		e.preventDefault();
 		setRows( rows + 1 );
@@ -16,14 +20,6 @@ export default function Group() {
 		}
 	}
 
-	const handleConditionChange = (e) => {
-		setSelectConditionValue( e.target.value );
-	}
-
-	const handleMatchesChange = (e) => {
-		setSelectMatchesValue( e.target.value );
-	}
-
 	if ( ! dnsei_plugin_params.settings ) {
 		var count    = 1;
 	} else {
@@ -32,16 +28,18 @@ export default function Group() {
 
 	const [ rows, setRows ] = useState( count  );
 
-	function andBlock( dataId, settings ) {
+	for ( let i=0; i<rows; i++ ) {
 
-		const [ selectConditionValue, setSelectConditionValue ] = useState(  settings.condition[dataId]  );
-		const [ selectMatchesValue, setSelectMatchesValue ] = useState( settings.matches[dataId]  );
+		var block = [ ...block, andBlock( i ) ]
+	}
+
+	function andBlock( dataId ) {
 
 		return (
 			<div key={dataId} className="do-not-send-emails-if-conditional-group">
 
 				<div className="do-not-send-emails-if-condition">
-					<select onChange={handleConditionChange} value={selectConditionValue} name="do-not-send-emails-if-condition[]">
+					<select data-id={dataId} defaultValue={condition[dataId]} name="do-not-send-emails-if-condition[]">
 						<option> { __( 'To Email', 'do-not-send-emails-if' ) } </option>
 						<option> { __( 'From Email', 'do-not-send-emails-if' ) } </option>
 						<option> { __( 'Email Subject', 'do-not-send-emails-if' ) } </option>
@@ -50,7 +48,7 @@ export default function Group() {
 				</div>
 
 				<div className="do-not-send-emails-if-matches">
-					<select onChange={handleMatchesChange} value={selectMatchesValue}  name="do-not-send-emails-if-matches[]">
+					<select data-id={dataId} defaultValue={matches[dataId]}  name="do-not-send-emails-if-matches[]">
 						<option> { __( 'is', 'do-not-send-emails-if' ) } </option>
 						<option> { __( 'is not', 'do-not-send-emails-if' ) } </option>
 						<option> { __( 'contains', 'do-not-send-emails-if' ) } </option>
@@ -59,7 +57,7 @@ export default function Group() {
 				</div>
 
 				<div className="do-not-send-emails-if-result">
-					<input defaultValue={settings.result[dataId]} type="text" name="do-not-send-emails-if-result[]"/>
+					<input defaultValue={result[dataId]} type="text" name="do-not-send-emails-if-result[]"/>
 				</div>
 
 				<div className="do-not-send-emails-if-plus">
@@ -72,11 +70,6 @@ export default function Group() {
 
 			</div>
 		);
-	}
-
-	for ( let i=0; i<rows; i++ ) {
-
-		var block = [ ...block, andBlock( i, dnsei_plugin_params.settings ) ]
 	}
 
 	return (
