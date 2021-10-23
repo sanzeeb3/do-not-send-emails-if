@@ -41,10 +41,9 @@ export default function Group() {
 				<div className="do-not-send-emails-if-condition">
 					<select data-id={dataId} defaultValue={condition[dataId]} name="do-not-send-emails-if-condition[]">
 						<option> { __( '-- Select --', 'do-not-send-emails-if' ) } </option>
-						<option> { __( 'To Email', 'do-not-send-emails-if' ) } </option>
-						<option> { __( 'From Email', 'do-not-send-emails-if' ) } </option>
-						<option> { __( 'Email Subject', 'do-not-send-emails-if' ) } </option>
-						<option> { __( 'Email Message', 'do-not-send-emails-if' ) } </option>
+						<option value="to"> { __( 'To Email', 'do-not-send-emails-if' ) } </option>
+						<option value="subject"> { __( 'Email Subject', 'do-not-send-emails-if' ) } </option>
+						<option value="message"> { __( 'Email Message', 'do-not-send-emails-if' ) } </option>
 					</select>
 				</div>
 

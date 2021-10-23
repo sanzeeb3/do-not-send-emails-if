@@ -45,7 +45,7 @@ final class Plugin {
 	 */
 	public function init() {
 
-		add_filter( 'pre_wp_mail', array( $this, 'prepare_block' ), PHP_INT_MAX, 2 );
+		add_filter( 'pre_wp_mail', array( $this, 'plugin_in_action' ), PHP_INT_MAX, 2 );
 
 		$classes = array( 'Settings' );
 
@@ -83,69 +83,48 @@ final class Plugin {
 	 *
 	 * @return void.
 	 */
-	public function prepare_block( $return, $atts ) {
+	public function plugin_in_action( $return, $atts ) {
 		$settings = get_option( 'do_not_send_emails_if' );
 
 		foreach ( $settings['condition'] as $key => $condition ) {
 
 			switch ( $settings['matches'][ $key ] ) {
 				case 'is':
-					if ( 'To Email' === $condition && $atts['to'] === $settings['result'][ $key ] ) {
-						return false;
-					}
 
-					if ( 'Email Subject' === $condition && $atts['subject'] === $settings['result'][ $key ] ) {
-						return false;
-					}
-
-					if ( 'Email Message' === $condition && $atts['message'] === $settings['result'][ $key ] ) {
-						return false;
+					foreach( $atts as $key => $value ) {
+						if ( $key === $condition && $value === $settings['result'][ $key ]  ) {
+							return false;
+						}
 					}
 
 					break;
 
 				case 'is not':
-					if ( 'To Email' === $condition && $atts['to'] !== $settings['result'][ $key ] ) {
-						return false;
-					}
 
-					if ( 'Email Subject' === $condition && $atts['subject'] !== $settings['result'][ $key ] ) {
-						return false;
-					}
-
-					if ( 'Email Message' === $condition && $atts['message'] !== $settings['result'][ $key ] ) {
-						return false;
+					foreach( $atts as $key => $value ) {
+						if ( $key === $condition && $value !== $settings['result'][ $key ]  ) {
+							return false;
+						}
 					}
 
 					break;
 
 				case 'contains':
-					if ( 'To Email' === $condition && strpos( $atts['to'], $settings['result'][ $key ] ) !== false ) {
-						return false;
-					}
 
-					if ( 'Email Subject' === $condition && strpos( $atts['subject'], $settings['result'][ $key ] ) !== false ) {
-						return false;
-					}
-
-					if ( 'Email Message' === $condition && strpos( $atts['message'], $settings['result'][ $key ] ) !== false ) {
-						return false;
+					foreach( $atts as $key => $value ) {
+						if ( $key === $condition && strpos( $value, $settings['result'][ $key ] ) !== false ) {
+							return false;
+						}
 					}
 
 					break;
 
 				case 'does not contain':
 
-					if ( 'To Email' === $condition && strpos( $atts['to'], $settings['result'][ $key ] ) === false ) {
-						return false;
-					}
-
-					if ( 'Email Subject' === $condition && strpos( $atts['subject'], $settings['result'][ $key ] ) === false ) {
-						return false;
-					}
-
-					if ( 'Email Message' === $condition && strpos( $atts['message'], $settings['result'][ $key ] ) === false ) {
-						return false;
+					foreach( $atts as $key => $value ) {
+						if ( $key === $condition && strpos( $value, $settings['result'][ $key ] ) === false ) {
+							return false;
+						}
 					}
 					break;
 			}//end switch
