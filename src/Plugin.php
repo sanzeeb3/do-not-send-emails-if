@@ -91,8 +91,8 @@ final class Plugin {
 			switch ( $settings['matches'][ $key ] ) {
 				case 'is':
 
-					foreach( $atts as $key => $value ) {
-						if ( $key === $condition && $value === $settings['result'][ $key ]  ) {
+					foreach( $atts as $email_attr => $value ) {
+						if ( $email_attr === $condition && $value === $settings['result'][ $key ]  ) {
 							return false;
 						}
 					}
@@ -101,8 +101,8 @@ final class Plugin {
 
 				case 'is not':
 
-					foreach( $atts as $key => $value ) {
-						if ( $key === $condition && $value !== $settings['result'][ $key ]  ) {
+					foreach( $atts as $email_attr => $value ) {
+						if ( $email_attr === $condition && $value !== $settings['result'][ $key ]  ) {
 							return false;
 						}
 					}
@@ -111,8 +111,8 @@ final class Plugin {
 
 				case 'contains':
 
-					foreach( $atts as $key => $value ) {
-						if ( $key === $condition && strpos( $value, $settings['result'][ $key ] ) !== false ) {
+					foreach( $atts as $email_attr => $value ) {
+						if ( $email_attr === $condition && strpos( $value, $settings['result'][ $key ] ) !== false ) {
 							return false;
 						}
 					}
@@ -121,8 +121,8 @@ final class Plugin {
 
 				case 'does not contain':
 
-					foreach( $atts as $key => $value ) {
-						if ( $key === $condition && strpos( $value, $settings['result'][ $key ] ) === false ) {
+					foreach( $atts as $email_attr => $value ) {
+						if ( $email_attr === $condition && strpos( $value, $settings['result'][ $key ] ) === false ) {
 							return false;
 						}
 					}
