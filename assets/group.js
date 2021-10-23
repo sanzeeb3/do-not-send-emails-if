@@ -40,6 +40,7 @@ export default function Group() {
 
 				<div className="do-not-send-emails-if-condition">
 					<select data-id={dataId} defaultValue={condition[dataId]} name="do-not-send-emails-if-condition[]">
+						<option> { __( '-- Select --', 'do-not-send-emails-if' ) } </option>
 						<option> { __( 'To Email', 'do-not-send-emails-if' ) } </option>
 						<option> { __( 'From Email', 'do-not-send-emails-if' ) } </option>
 						<option> { __( 'Email Subject', 'do-not-send-emails-if' ) } </option>
@@ -49,6 +50,7 @@ export default function Group() {
 
 				<div className="do-not-send-emails-if-matches">
 					<select data-id={dataId} defaultValue={matches[dataId]}  name="do-not-send-emails-if-matches[]">
+						<option> { __( '-- Select --', 'do-not-send-emails-if' ) } </option>
 						<option> { __( 'is', 'do-not-send-emails-if' ) } </option>
 						<option> { __( 'is not', 'do-not-send-emails-if' ) } </option>
 						<option> { __( 'contains', 'do-not-send-emails-if' ) } </option>

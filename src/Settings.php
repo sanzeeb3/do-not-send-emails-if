@@ -20,7 +20,6 @@ class Settings {
 		add_action( 'admin_menu', array( $this, 'dnsei_register_setting_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_assets' ) );
 		add_action( 'admin_init', array( $this, 'save_settings' ) );
-		add_action( 'pre_wp_mail', array( $this, 'plugin_in_action' ), PHP_INT_MAX, 2 );
 	}
 
 	/**
@@ -96,6 +95,7 @@ class Settings {
 			'result'    => $result,
 		);
 
+
 		update_option( 'do_not_send_emails_if', $inputs );
 
 		add_action(
@@ -108,17 +108,5 @@ class Settings {
 				<?php
 			}
 		);
-	}
-
-	/**
-	 * Plugin in action. That is, block an email if condition matches.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return void.
-	 */
-	public function plugin_in_action( $return, $atts ) {
-		$conditions = get_option( 'do_not_send_emails_if' );
-
 	}
 }

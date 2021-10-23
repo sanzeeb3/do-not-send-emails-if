@@ -45,6 +45,8 @@ final class Plugin {
 	 */
 	public function init() {
 
+		add_filter( 'pre_wp_mail', array( $this, 'prepare_block' ), PHP_INT_MAX, 2 );
+
 		$classes = array( 'Settings' );
 
 		foreach ( $classes as $class ) {
@@ -72,5 +74,83 @@ final class Plugin {
 
 		load_textdomain( 'do-not-send-emails-if', WP_LANG_DIR . '/do-not-send-emails-if/do-not-send-emails-if-' . $locale . '.mo' );
 		load_plugin_textdomain( 'do-not-send-emails-if', false, plugin_basename( dirname( DO_NOT_SEND_EMAILS_IF_PLUGIN_FILE ) ) . '/languages' );
+	}
+
+	/**
+	 * Plugin in action. That is, block an email if condition matches.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void.
+	 */
+	public function prepare_block( $return, $atts ) {
+		$settings = get_option( 'do_not_send_emails_if' );
+
+		foreach ( $settings['condition'] as $key => $condition ) {
+
+			switch ( $settings['matches'][ $key ] ) {
+				case 'is':
+					if ( 'To Email' === $condition && $atts['to'] === $settings['result'][ $key ] ) {
+						return false;
+					}
+
+					if ( 'Email Subject' === $condition && $atts['subject'] === $settings['result'][ $key ] ) {
+						return false;
+					}
+
+					if ( 'Email Message' === $condition && $atts['message'] === $settings['result'][ $key ] ) {
+						return false;
+					}
+
+					break;
+
+				case 'is not':
+					if ( 'To Email' === $condition && $atts['to'] !== $settings['result'][ $key ] ) {
+						return false;
+					}
+
+					if ( 'Email Subject' === $condition && $atts['subject'] !== $settings['result'][ $key ] ) {
+						return false;
+					}
+
+					if ( 'Email Message' === $condition && $atts['message'] !== $settings['result'][ $key ] ) {
+						return false;
+					}
+
+					break;
+
+				case 'contains':
+					if ( 'To Email' === $condition && strpos( $atts['to'], $settings['result'][ $key ] ) !== false ) {
+						return false;
+					}
+
+					if ( 'Email Subject' === $condition && strpos( $atts['subject'], $settings['result'][ $key ] ) !== false ) {
+						return false;
+					}
+
+					if ( 'Email Message' === $condition && strpos( $atts['message'], $settings['result'][ $key ] ) !== false ) {
+						return false;
+					}
+
+					break;
+
+				case 'does not contain':
+
+					if ( 'To Email' === $condition && strpos( $atts['to'], $settings['result'][ $key ] ) === false ) {
+						return false;
+					}
+
+					if ( 'Email Subject' === $condition && strpos( $atts['subject'], $settings['result'][ $key ] ) === false ) {
+						return false;
+					}
+
+					if ( 'Email Message' === $condition && strpos( $atts['message'], $settings['result'][ $key ] ) === false ) {
+						return false;
+					}
+					break;
+			}//end switch
+		}//end foreach
+
+		return null;
 	}
 }
