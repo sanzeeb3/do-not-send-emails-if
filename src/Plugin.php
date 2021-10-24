@@ -79,20 +79,24 @@ final class Plugin {
 	/**
 	 * Plugin in action. That is, block an email if condition matches.
 	 *
+	 * Returning a non-null value will short-circuit wp_mail(), returning that value instead. A boolean return value should be used to indicate whether the email was successfully sent.
+	 *
+	 * @param null|bool $return Short-circuit return value.
+	 * @param array     $atts Array of the wp_mail() arguments.
+	 *
 	 * @since 1.0.0
 	 *
-	 * @return void.
+	 * @return null|bool Short-circuit return value..
 	 */
-	public function plugin_in_action( $return, $atts ) {
+	public function plugin_in_action( $return, $atts ) { //phpcs:ignore Generic.Metrics.CyclomaticComplexity.MaxExceeded, Generic.Metrics.NestingLevel.MaxExceeded
 		$settings = get_option( 'do_not_send_emails_if' );
 
 		foreach ( $settings['condition'] as $key => $condition ) {
 
 			switch ( $settings['matches'][ $key ] ) {
 				case 'is':
-
-					foreach( $atts as $email_attr => $value ) {
-						if ( $email_attr === $condition && $value === $settings['result'][ $key ]  ) {
+					foreach ( $atts as $email_attr => $value ) {
+						if ( $email_attr === $condition && $value === $settings['result'][ $key ] ) {
 							return false;
 						}
 					}
@@ -100,9 +104,8 @@ final class Plugin {
 					break;
 
 				case 'is not':
-
-					foreach( $atts as $email_attr => $value ) {
-						if ( $email_attr === $condition && $value !== $settings['result'][ $key ]  ) {
+					foreach ( $atts as $email_attr => $value ) {
+						if ( $email_attr === $condition && $value !== $settings['result'][ $key ] ) {
 							return false;
 						}
 					}
@@ -110,8 +113,7 @@ final class Plugin {
 					break;
 
 				case 'contains':
-
-					foreach( $atts as $email_attr => $value ) {
+					foreach ( $atts as $email_attr => $value ) {
 						if ( $email_attr === $condition && strpos( $value, $settings['result'][ $key ] ) !== false ) {
 							return false;
 						}
@@ -120,8 +122,7 @@ final class Plugin {
 					break;
 
 				case 'does not contain':
-
-					foreach( $atts as $email_attr => $value ) {
+					foreach ( $atts as $email_attr => $value ) {
 						if ( $email_attr === $condition && strpos( $value, $settings['result'][ $key ] ) === false ) {
 							return false;
 						}

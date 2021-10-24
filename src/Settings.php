@@ -85,16 +85,15 @@ class Settings {
 
 		check_admin_referer( 'dnsei_settings', 'do_not_send_emails_if_settings_nonce' );
 
-		$condition = isset( $_POST['do-not-send-emails-if-condition'] ) ? array_map( 'sanitize_text_field', $_POST['do-not-send-emails-if-condition'] ) : array();
-		$matches   = isset( $_POST['do-not-send-emails-if-matches'] ) ? array_map( 'sanitize_text_field', $_POST['do-not-send-emails-if-matches'] ) : array();
-		$result    = isset( $_POST['do-not-send-emails-if-result'] ) ? array_map( 'sanitize_text_field', $_POST['do-not-send-emails-if-result'] ) : array();
+		$condition = isset( $_POST['do-not-send-emails-if-condition'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['do-not-send-emails-if-condition'] ) ) : array();
+		$matches   = isset( $_POST['do-not-send-emails-if-matches'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['do-not-send-emails-if-matches'] ) ) : array();
+		$result    = isset( $_POST['do-not-send-emails-if-result'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['do-not-send-emails-if-result'] ) ) : array();
 
 		$inputs = array(
 			'condition' => $condition,
 			'matches'   => $matches,
 			'result'    => $result,
 		);
-
 
 		update_option( 'do_not_send_emails_if', $inputs );
 

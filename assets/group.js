@@ -1,3 +1,11 @@
+/**
+ * Creating conditional groups.
+ *
+ * global dnsei_plugin_params
+ *
+ * @since 1.0.0
+ */
+
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 
