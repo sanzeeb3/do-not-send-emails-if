@@ -19,9 +19,8 @@ Do not send emails if conditions matches. You set the condition.
 - **Receipent (To Email)** is/is not/contains/do not contain
 - **Email Subject** is/is not/contains/do not contain
 - **Email Message** is/is not/contains/do not contain
-- **From Email** is/is not/contains/do not contain
 
-and more conditions...
+and other conditions?
 
 Compatible with WordPress core emails such as New User Registration email, Plugin/Theme Automatic Updates Notification emails etc, WooCommerce emails such as New Order Email, Password Change Email etc.
 
@@ -29,7 +28,6 @@ and with every WordPress plugins sending emails with <code>wp_mail()</code>.
 
 Follow the [documentation](https://sanjeebaryal.com.np/disable-any-emails-sent-from-your-wordpress-site/) for more information.
 
-Contributions of any kind are welcome. Visit the [GitHub Repository](https://github.com/sanzeeb3/do-not-send-emails-if).
 
 == Screenshots ==
 
