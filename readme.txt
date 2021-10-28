@@ -16,11 +16,11 @@ Do not send emails if conditions matches. You set the condition.
 
 **Do not send emails if**
 
-- **Receipent (To Email)** is/is not/contains/do not contain
-- **Email Subject** is/is not/contains/do not contain
-- **Email Message** is/is not/contains/do not contain
+- **Receipent (To Email)** is/is not/contains/do not contain _something_
+- **Email Subject** is/is not/contains/do not contain _something_
+- **Email Message** is/is not/contains/do not contain _something_
 
-and other conditions?
+and many other conditions..
 
 Compatible with WordPress core emails such as New User Registration email, Plugin/Theme Automatic Updates Notification emails etc, WooCommerce emails such as New Order Email, Password Change Email etc.
 
@@ -35,9 +35,15 @@ Follow the [documentation](https://sanjeebaryal.com.np/disable-any-emails-sent-f
 
 == Frequently Asked Questions ==
 
-No questions yet.
+= How can I disable new user registration email?
+
+Set the condition: _Do not send emails if Email Subject contains New User Registration_.
+
+= How can I disable emails sent to receipents outside of my organization?
+
+Set the condition: _Do not send emails if To Email does not contain @yourdomain.com_
 
 == Changelog ==
 
-= 1.0.0 - xx/xx/2021 =
+= 1.0.0 - 10/28/2021 =
 * Initial Release
